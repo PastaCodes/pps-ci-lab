@@ -1,9 +1,11 @@
-name: Test Build
+name: Clone Repository
 on:
-  push:
+  push: # On every push on any branch
 jobs:
-  Build:
-    runs-on: ubuntu-latest
+  Build: # Job name
+    runs-on: ubuntu-latest # Operating system selection
+    env: # Environment can be controlled at the job or step level
+      TERM: dumb # Sets the environment variable TERM to "dumb"
     steps:
       - name: Checkout # custom name Checkout the repository
         uses: actions/checkout@v6 # Action implemented in this repository, tag starting with "v6"
@@ -12,4 +14,4 @@ jobs:
           java-version: 21
           distribution: temurin
       - name: Build
-        run: ./gradlew build
+        run: ./gradlew check
